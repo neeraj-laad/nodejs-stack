@@ -15,7 +15,12 @@ components:
     endpoints:
       - name: nodejs
         port: 3000
-commands:
+  - id: build-image      
+    dockerfile: 
+        path: https://raw.githubusercontent.com/neeraj-laad/nodejs-stack-registry/build-deploy/devfiles/nodejs-basic/build/Dockerfile
+  - id: deploy-image      
+    manifest: 
+        path: https://raw.githubusercontent.com/neeraj-laad/nodejs-stack-registry/build-deploy/devfiles/nodejs-basic/deploy/k8s-manifest.yaml
   - name: devBuild
     actions:
       - type: exec
