@@ -1,30 +1,57 @@
-apiVersion: 1.0.0
+schemaVersion: 2.0.0
 metadata:
-  generateName: express-
+  name: nodejs-express-starter
 projects:
   - name: simple
-    source:
-      type: git
+    git:
       location: https://github.com/neeraj-laad/nodejs-express-starter.git
 components:
-  - type: dockerimage
-    alias: node12
-    image: node:12
-    memoryLimit: 1024Mi
-    mountSources: true
-    endpoints:
-      - name: express
-        port: 3000
-commands:
-  - name: devBuild
-    actions:
-      - type: exec
-        component: node12
-        command: npm install
-        workdir: ${CHE_PROJECTS_ROOT}/app
-  - name: devRun
-    actions:
-      - type: exec
-        component: node12
-        command: node server.js
-        workdir: ${CHE_PROJECTS_ROOT}/app
+  - container:
+      image: registry.access.redhat.com/ubi8/nodejs-12:1-36
+      mountSources: true
+      name: node12
+      memoryLimit: 1024Mi
+      endpoints:
+        - name: '3000/tcp'
+          targetPort: 3000
+          # odo not using currently, added to validate JSON Schema
+          configuration:
+            protocol: tcp
+            scheme: http
+            type: terminal
+commands: 
+  - exec:
+      id: set up stack and download stack dependencies
+      commandLine: "git init && git remote add origin https://github.com/neeraj-laad/nodejs-express-stack.git && git fetch && git reset origin/master && git branch --set-upstream-to=origin/master && git ls-files -z --deleted | xargs -0 git checkout -- && npm install"
+      component: node12
+      workingDir: ${CHE_PROJECTS_ROOT}
+      group:
+        kind: build
+  - exec:
+      id: download app dependencies
+      commandLine: "npm install"
+      component: node12
+      workingDir: ${CHE_PROJECTS_ROOT}/nodejs-express-starter
+      group:
+        kind: build
+  - exec:
+      id: run the app
+      commandLine: "npm start"
+      component: node12
+      workingDir: ${CHE_PROJECTS_ROOT}
+      group:
+        kind: run
+  # - exec:
+  #     id: run test suite
+  #     commandLine: "npm test && npm test --prefix simple"
+  #     component: node12
+  #     workingDir: ${CHE_PROJECTS_ROOT}
+  #     group:
+  #       kind: test
+  # - exec:
+  #     id: run app with debugging enabled
+  #     commandLine: "npm debug"
+  #     component: node12
+  #     workingDir: ${CHE_PROJECTS_ROOT}
+  #     group:
+  #       kind: debug
