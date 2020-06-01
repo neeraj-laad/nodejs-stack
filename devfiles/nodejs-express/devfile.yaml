@@ -14,7 +14,6 @@ components:
       endpoints:
         - name: '3000/tcp'
           targetPort: 3000
-          # odo not using currently, added to validate JSON Schema
           configuration:
             protocol: tcp
             scheme: http
@@ -41,17 +40,3 @@ commands:
       workingDir: ${CHE_PROJECTS_ROOT}
       group:
         kind: run
-  # - exec:
-  #     id: run test suite
-  #     commandLine: "npm test && npm test --prefix simple"
-  #     component: node12
-  #     workingDir: ${CHE_PROJECTS_ROOT}
-  #     group:
-  #       kind: test
-  # - exec:
-  #     id: run app with debugging enabled
-  #     commandLine: "npm debug"
-  #     component: node12
-  #     workingDir: ${CHE_PROJECTS_ROOT}
-  #     group:
-  #       kind: debug
