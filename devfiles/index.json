@@ -21,9 +21,23 @@
       "express"
     ],
     "projectType": "express",
-    "language": "nodejs",
+    "language": "nodejs-express",
     "links": {
       "self": "/devfiles/nodejs-express/devfile.yaml"
+    }
+  },
+  {
+    "displayName": "Postgres framework",
+    "description": "Postgres",
+    "tags": [
+      "NodeJS",
+      "PostgreSQL",
+      "Alpine"
+    ],
+    "projectType": "Postgres",
+    "language": "nodejs-postgres",
+    "links": {
+      "self": "/devfiles/nodejs-postgres/devfile.yaml"
     }
   }
 ]
