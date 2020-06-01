@@ -20,8 +20,8 @@
       "nodejs",
       "express"
     ],
-    "projectType": "nodejs",
-    "language": "nodejs-express",
+    "projectType": "nodejs-express",
+    "language": "nodejs",
     "links": {
       "self": "/devfiles/nodejs-express/devfile.yaml"
     }
@@ -34,8 +34,8 @@
       "PostgreSQL",
       "Alpine"
     ],
-    "projectType": "nodejs",
-    "language": "nodejs-postgres",
+    "projectType": "nodejs-postgres",
+    "language": "nodejs",
     "links": {
       "self": "/devfiles/nodejs-postgres/devfile.yaml"
     }
