@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 schemaVersion: 2.0.0
-=======
-apiVersion: 2.0.0
->>>>>>> d08dde7c1c914e0529dff7330887e36c8f15e677
 metadata:
   name: nodejs-express-starter
 projects:
@@ -11,16 +7,9 @@ projects:
       location: https://github.com/neeraj-laad/nodejs-express-starter.git
 components:
   - container:
-<<<<<<< HEAD
       image: registry.access.redhat.com/ubi8/nodejs-12:1-36
       mountSources: true
       name: node12
-=======
-      image: cameronmcwilliam/express-odo
-      mountSources: true
-      #sourceMapping: /stack/user-app
-      name: odoexpress
->>>>>>> d08dde7c1c914e0529dff7330887e36c8f15e677
       memoryLimit: 1024Mi
       endpoints:
         - name: '3000/tcp'
@@ -32,7 +21,6 @@ components:
             type: terminal
 commands: 
   - exec:
-<<<<<<< HEAD
       id: set up stack and download stack dependencies
       commandLine: "git init && git remote add origin https://github.com/neeraj-laad/nodejs-express-stack.git && git fetch && git reset origin/master && git branch --set-upstream-to=origin/master && git ls-files -z --deleted | xargs -0 git checkout -- && npm install"
       component: node12
@@ -44,45 +32,26 @@ commands:
       commandLine: "npm install"
       component: node12
       workingDir: ${CHE_PROJECTS_ROOT}/nodejs-express-starter
-=======
-      id: install dependencies 
-      commandLine: "npm install"
-      component: odoexpress
-      workingDir: ${CHE_PROJECTS_ROOT}/simple
->>>>>>> d08dde7c1c914e0529dff7330887e36c8f15e677
       group:
         kind: build
   - exec:
       id: run the app
-<<<<<<< HEAD
       commandLine: "npm start"
       component: node12
-=======
-      commandLine: "node server.js"
-      component: odoexpress
->>>>>>> d08dde7c1c914e0529dff7330887e36c8f15e677
       workingDir: ${CHE_PROJECTS_ROOT}
       group:
         kind: run
   # - exec:
   #     id: run test suite
   #     commandLine: "npm test && npm test --prefix simple"
-<<<<<<< HEAD
   #     component: node12
-=======
-  #     component: odoexpress
->>>>>>> d08dde7c1c914e0529dff7330887e36c8f15e677
   #     workingDir: ${CHE_PROJECTS_ROOT}
   #     group:
   #       kind: test
   # - exec:
   #     id: run app with debugging enabled
   #     commandLine: "npm debug"
-<<<<<<< HEAD
   #     component: node12
-=======
-  #     component: odoexpress
->>>>>>> d08dde7c1c914e0529dff7330887e36c8f15e677
   #     workingDir: ${CHE_PROJECTS_ROOT}
   #     group:
   #       kind: debug
